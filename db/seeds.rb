@@ -10,8 +10,10 @@ admin = User.create(username: 'admin', email: 'admin@mail.com', role: 'admin')
 
 3.times do |i|
   test = Test.create(title: "title #{i}", level: rand(1..3), category_id: Category.first.id, author_id: admin.id)
+  Result.create(status: 'complete', test_id: test.id, user_id: admin.id)
   5.times do |j|
     question = Question.create(body: "test #{i} question #{j}", test_id: test.id)
     Answer.create(body: "test #{i} answer #{j}", correct: [true, false].sample, question_id: question.id)
   end
 end
+
