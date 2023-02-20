@@ -13,19 +13,19 @@ Category.create!(title: 'Category 1')
 User.create!(username: 'name', email: 'user@mail.com', role: 'user')
 admin = User.create(username: 'admin', email: 'admin@mail.com', role: 'admin')
 
-tests = Test.create([{ title: 'title 1', level: 1, category_id: Category.first.id, author_id: admin.id },
-                     { title: 'title 2', level: 2, category_id: Category.first.id, author_id: admin.id },
-                     { title: 'title 3', level: 3, category_id: Category.first.id, author_id: admin.id }])
+tests = Test.create([{ title: 'title 1', level: 1, category: Category.first, author: admin },
+                     { title: 'title 2', level: 2, category: Category.first, author: admin },
+                     { title: 'title 3', level: 3, category: Category.first, author: admin }])
 
 tests.each do |test|
-  Result.create!(status: 'complete', test_id: test.id, user_id: admin.id)
-  Question.create!([{ body: "test #{test.id} question 1", test_id: test.id },
-                    { body: "test #{test.id} question 2", test_id: test.id },
-                    { body: "test #{test.id} question 3", test_id: test.id }])
+  Result.create!(status: 'complete', test:, user: admin)
+  Question.create!([{ body: "test #{test.id} question 1", test: },
+                    { body: "test #{test.id} question 2", test: },
+                    { body: "test #{test.id} question 3", test: }])
 end
 
 Question.all.each do |question|
-  Answer.create!([{ body: "question #{question.id} answer 1", correct: true, question_id: question.id },
-                  { body: "question #{question.id} answer 2", correct: false, question_id: question.id },
-                  { body: "question #{question.id} answer 3", correct: false, question_id: question.id }])
+  Answer.create!([{ body: "question #{question.id} answer 1", correct: true, question: },
+                  { body: "question #{question.id} answer 2", correct: false, question: },
+                  { body: "question #{question.id} answer 3", correct: false, question: }])
 end
