@@ -10,12 +10,6 @@ class QuestionsController < ApplicationController
     # render json: { questions: Question.all }
   end
 
-  # GET /test/(:id)/exact_questions
-  def exact_questions
-    # @questions = @test.questions
-    render json: { question: @test.questions }
-  end
-
   # GET /test/(:id)/questions/1 or /test/(:id)/questions/1.json
   def show; end
 
@@ -24,9 +18,6 @@ class QuestionsController < ApplicationController
     @test.questions.build
     # render file: 'app/views/questions/form.html.erb'
   end
-
-  # GET /test/(:id)/questions/1/edit
-  def edit; end
 
   # POST /test/(:id)/questions or /test/(:id)/questions.json
   def create
@@ -39,19 +30,6 @@ class QuestionsController < ApplicationController
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /test/(:id)/questions/1 or /test/(:id)/questions/1.json
-  def update
-    respond_to do |format|
-      if @question.update(question_params)
-        format.html { redirect_to test_question_url(@test, @question), notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
