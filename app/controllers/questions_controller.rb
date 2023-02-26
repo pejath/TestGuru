@@ -1,50 +1,30 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :set_test
+  before_action :set_test, only: %i[new create index]
   before_action :set_question, only: %i[show edit update destroy]
 
   # GET /test/(:id)/questions or /test/(:id)/questions.json
   def index
-    @questions = Question.all
-    # render json: { questions: Question.all }
+    @questions = @test.questions
   end
 
   # GET /test/(:id)/questions/1 or /test/(:id)/questions/1.json
   def show; end
 
   # GET /test/(:id)/questions/new
-  def new
-    @test.questions.build
-    # render file: 'app/views/questions/form.html.erb'
-  end
+  def new; end
 
   # POST /test/(:id)/questions or /test/(:id)/questions.json
   def create
-    # @question = Question.new(question_params)
-    @question = @test.questions.build(question_params)
-
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to test_question_url(@test, @question), notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
-    end
+    @question = @test.questions.create(question_params)
+    redirect_to test_questions_url(@test, @question), notice: 'Question was successfully created.'
   end
 
   # DELETE /test/(:id)/questions/1 or /test/(:id)/questions/1.json
   def destroy
-    respond_to do |format|
-      if @question.destroy
-        format.html { redirect_to test_questions_url, notice: 'Question was successfully destroyed.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to test_questions_url, notice: 'Something went wrong.' }
-      end
-    end
+    @question.destroy
+    redirect_to test_questions_url(@question.test), notice: 'Question was successfully destroyed.'
   end
 
   private

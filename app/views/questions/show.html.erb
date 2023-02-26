@@ -7,5 +7,5 @@
   <strong>Test id:</strong>
   <%= @question.test_id %>
 </p>
-<%= link_to 'Edit', edit_test_question_path(@question) %> |
-<%= link_to 'Back', test_questions_path %>
+
+<%= link_to 'Back', test_questions_path(@question.test) %>
