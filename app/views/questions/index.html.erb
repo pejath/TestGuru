@@ -11,17 +11,11 @@
   </thead>
 
   <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.body %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= button_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <%= render @questions%>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Question', new_test_question_path(@test) %>
+<%= link_to 'New Question', new_test_question_path(@test) %> |
 <%= link_to 'Back', tests_url %>

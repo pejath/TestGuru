@@ -13,7 +13,12 @@ class QuestionsController < ApplicationController
   def show; end
 
   # GET /test/(:id)/questions/new
-  def new; end
+  def new
+    @question = @test.questions.build
+  end
+
+  # GET questions/(:id)/edit
+  def edit; end
 
   # POST /test/(:id)/questions or /test/(:id)/questions.json
   def create
@@ -22,7 +27,16 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to question_url(@question), notice: 'Question was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  # PUT /test/(:id)/questions or /test/(:id)/questions.json
+  def update
+    if @question.update(question_params)
+      redirect_to question_url(@question), notice: 'Question was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

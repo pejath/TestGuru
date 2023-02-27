@@ -1,34 +1,24 @@
 <%= form_with(model: test) do |form| %>
-  <% if test.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h2>
+  <%= render 'shared/errors', resource: test %>
 
-      <ul>
-        <% test.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div>
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, id: :test_title %>
   </div>
 
-  <div class="field">
+  <div>
     <%= form.label :level %>
-    <%= form.text_field :level %>
+    <%= form.number_field :level, id: :test_level %>
   </div>
 
-  <div class="field">
+  <div>
     <%= form.label :author_id %>
-    <%= form.text_field :author_id %>
+    <%= form.collection_select :author_id, User.all, :id, :username, prompt: '' %>
   </div>
 
-  <div class="field">
+  <div>
     <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true %>
   </div>
 
   <div class="actions">
