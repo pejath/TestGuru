@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Body:</strong>
+  <%= @question.body %>
+</p>
+<p>
+  <strong>Test id:</strong>
+  <%= @question.test_id %>
+</p>
+
+<%= link_to 'Back', test_questions_path(@question.test) %>
