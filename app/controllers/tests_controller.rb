@@ -34,11 +34,8 @@ class TestsController < ApplicationController
   end
 
   def destroy
-    if @test.destroy
-      redirect_to tests_url, notice: 'Test was successfully destroyed.'
-    else
-      redirect_to tests_url, notice: 'Something went wrong.'
-    end
+    @test.destroy
+    redirect_to tests_url, notice: 'Test was successfully destroyed.'
   end
 
   private

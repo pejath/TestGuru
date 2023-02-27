@@ -17,8 +17,13 @@ class QuestionsController < ApplicationController
 
   # POST /test/(:id)/questions or /test/(:id)/questions.json
   def create
-    @question = @test.questions.create(question_params)
-    redirect_to test_questions_url(@test, @question), notice: 'Question was successfully created.'
+    @question = @test.questions.build(question_params)
+
+    if @question.save
+      redirect_to question_url(@question), notice: 'Question was successfully created.'
+    else
+      render :new
+    end
   end
 
   # DELETE /test/(:id)/questions/1 or /test/(:id)/questions/1.json
@@ -40,6 +45,6 @@ class QuestionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def question_params
-    params.require(:question).permit(:body, :test_id)
+    params.require(:question).permit(:body)
   end
 end
