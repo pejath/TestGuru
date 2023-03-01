@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
   def edit; end
 
   def create
-    @answer = Answer.new(answer_params)
+    @answer = @question.answers.build(answer_params)
 
     if @answer.save
       redirect_to answer_url(@answer), notice: 'Answer was successfully created.'

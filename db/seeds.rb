@@ -18,10 +18,10 @@ tests = Test.create([{ title: 'title 1', level: 1, category: Category.first, aut
                      { title: 'title 3', level: 3, category: Category.first, author: admin }])
 
 tests.each do |test|
-  Result.create!(status: 'complete', test:, user: admin)
   Question.create!([{ body: "test #{test.id} question 1", test: },
                     { body: "test #{test.id} question 2", test: },
                     { body: "test #{test.id} question 3", test: }])
+  TestPassage.create!(correct_questions: 0, test:, user: admin)
 end
 
 Question.all.each do |question|
