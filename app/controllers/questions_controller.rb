@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :set_test, only: %i[new create index]
+  before_action :set_test, only: %i[new create]
   before_action :set_question, only: %i[show edit update destroy]
 
-  # GET /test/(:id)/questions or /test/(:id)/questions.json
-  def index
-    @questions = @test.questions
-  end
-
-  # GET /test/(:id)/questions/1 or /test/(:id)/questions/1.json
+  # GET /questions/1 or /questions/1.json
   def show; end
 
   # GET /test/(:id)/questions/new
-  def new; end
+  def new
+    @question = @test.questions.build
+  end
+
+  # GET questions/(:id)/edit
+  def edit; end
 
   # POST /test/(:id)/questions or /test/(:id)/questions.json
   def create
@@ -22,14 +22,23 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to question_url(@question), notice: 'Question was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  # PUT /test/(:id)/questions or /test/(:id)/questions.json
+  def update
+    if @question.update(question_params)
+      redirect_to question_url(@question), notice: 'Question was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /test/(:id)/questions/1 or /test/(:id)/questions/1.json
   def destroy
     @question.destroy
-    redirect_to test_questions_url(@question.test), notice: 'Question was successfully destroyed.'
+    redirect_to test_url(@question.test), notice: 'Question was successfully destroyed.'
   end
 
   private

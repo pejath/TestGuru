@@ -8,4 +8,5 @@
   <%= @question.test_id %>
 </p>
 
-<%= link_to 'Back', test_questions_path(@question.test) %>
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', test_path(@question.test) %>
