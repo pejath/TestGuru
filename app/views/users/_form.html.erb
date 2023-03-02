@@ -1,0 +1,42 @@
+# frozen_string_literal: true
+form_with model: @user, locale: true
+ do |form| %>
+# frozen_string_literal: true
+render 'shared/errors', resource: @user
+ %>
+# frozen_string_literal: true
+form.label :email
+ %><br>
+<p>
+# frozen_string_literal: true
+form.text_field :email, id: :user_email
+ %>
+
+    </p>
+
+    <p>
+
+# frozen_string_literal: true
+ form.label :password
+ %><br>
+
+# frozen_string_literal: true
+ form.password_field :password, id: :user_password
+ %>
+    </p>
+    <p>
+# frozen_string_literal: true
+ form.label :password_confirmation
+ %><br>
+
+# frozen_string_literal: true
+ form.password_field :password_confirmation, id: :user_password_confirmation
+ %>
+
+    </p>
+
+# frozen_string_literal: true
+form.submit
+ %></p>
+
+    <%= end %>
