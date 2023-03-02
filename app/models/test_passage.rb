@@ -38,7 +38,7 @@ class TestPassage < ApplicationRecord
   private
 
   def set_question
-    if current_question.nil? && test.present?
+    if current_question.nil?
       self.current_question = test.questions.first if test.present?
     else
       self.current_question = next_question

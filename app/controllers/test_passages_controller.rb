@@ -23,9 +23,4 @@ class TestPassagesController < ApplicationController
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])
   end
-
-  # Only allow a list of trusted parameters through.
-  def test_passage_params
-    params.require(:test_passage).permit(:user_id, :test_id, :current_question_id, :correct_questions)
-  end
 end
