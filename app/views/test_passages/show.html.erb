@@ -5,11 +5,11 @@
   <%= link_to 'Back to Tests', tests_path %>
 
 <% elsif @test_passage.current_question.answers.count.zero? %>
-  <%= render 'header' %>
+  <%= render 'current_question' %>
   <p> There is no Answers in Question </p>
   <%= link_to 'Back to Tests', tests_path %>
 
 <% else %>
-  <%= render 'header' %>
+  <%= render 'current_question' %>
   <%= render 'form' %>
 <% end %>

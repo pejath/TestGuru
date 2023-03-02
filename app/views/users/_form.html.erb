@@ -1,42 +1,25 @@
-# frozen_string_literal: true
-form_with model: @user, locale: true
- do |form| %>
-# frozen_string_literal: true
-render 'shared/errors', resource: @user
- %>
-# frozen_string_literal: true
-form.label :email
- %><br>
-<p>
-# frozen_string_literal: true
-form.text_field :email, id: :user_email
- %>
+<%= form_with model: @user, locale: true do |form| %>
+  <%= render 'shared/errors', resource: @user %>
 
-    </p>
+  <p>
+    <%= form.label :username %><br>
+    <%= form.text_field :username, id: :user_username%>
+  </p>
 
-    <p>
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email, id: :user_email%>
+  </p>
 
-# frozen_string_literal: true
- form.label :password
- %><br>
+  <p>
+    <%= form.label :password %><br>
+    <%= form.password_field :password, id: :user_password %>
+  </p>
 
-# frozen_string_literal: true
- form.password_field :password, id: :user_password
- %>
-    </p>
-    <p>
-# frozen_string_literal: true
- form.label :password_confirmation
- %><br>
+  <p>
+    <%= form.label :password_confirmation %><br>
+    <%= form.password_field :password_confirmation, id: :user_password_confirmation %>
+  </p>
 
-# frozen_string_literal: true
- form.password_field :password_confirmation, id: :user_password_confirmation
- %>
-
-    </p>
-
-# frozen_string_literal: true
-form.submit
- %></p>
-
-    <%= end %>
+  <p><%= form.submit %></p>
+<% end %>
