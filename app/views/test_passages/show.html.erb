@@ -1,0 +1,15 @@
+<h1>Passing the <%= @test_passage.test.title %> Test</h1>
+
+<% if @test_passage.current_question.nil? %>
+  <p> There is no Questions </p>
+  <%= link_to 'Back to Tests', tests_path %>
+
+<% elsif @test_passage.current_question.answers.count.zero? %>
+  <%= render 'header' %>
+  <p> There is no Answers in Question </p>
+  <%= link_to 'Back to Tests', tests_path %>
+
+<% else %>
+  <%= render 'header' %>
+  <%= render 'form' %>
+<% end %>
