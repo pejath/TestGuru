@@ -5,6 +5,10 @@
   Correct Answers: <%= @test_passage.correct_questions %>
 </p>
 
-<%= result_message(@test_passage) %> <br>
+<% if @test_passage.successfully_completed? %>
+  <p>You are successfully completed test with <strong color="green"><%= @test_passage.percentage %>%</strong></p>
+<% else %>
+  <p>You are failed test, your percentage is <strong color="red"><%= @test_passage.percentage %>%</strong></p>
+<% end %>
 
 <%= link_to 'All Tests', tests_path %>
