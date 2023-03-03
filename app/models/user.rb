@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :username, :email, presence: true
-  validates :email, uniqueness: { case_sensitive: false }, format: /\A\w+@\w+\.\w+\z/
+  validates :email, uniqueness: { case_sensitive: false }, format: URI::MailTo::EMAIL_REGEXP
 
   def test_passage(test)
     test_passages.order(id: :desc).find_by(test_id: test)
