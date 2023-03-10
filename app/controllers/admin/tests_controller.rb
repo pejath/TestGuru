@@ -1,57 +1,50 @@
 # frozen_string_literal: true
 
-module Admin
-  class TestsController < Admin::BaseController
-    before_action :set_test, only: %i[show edit update destroy start]
+class Admin::TestsController < Admin::BaseController
+  before_action :set_test, only: %i[show edit update destroy]
 
-    def index
-      @tests = Test.all
+  def index
+    @tests = Test.all
+  end
+
+  def show; end
+
+  def new
+    @test = current_user.authored_tests.new
+  end
+
+  def edit; end
+
+  def create
+    @test = current_user.authored_tests.new(test_params)
+
+    if @test.save
+      redirect_to admin_test_url(@test), notice: 'Test was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
+  end
 
-    def show; end
-
-    def start
-      current_user.tests.push(@test)
-      redirect_to current_user.test_passage(@test)
+  def update
+    if @test.update(test_params)
+      redirect_to admin_test_url(@test), notice: 'Test was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
     end
+  end
 
-    def new
-      @test = Test.new
-    end
+  def destroy
+    @test.destroy
+    redirect_to admin_tests_url, notice: 'Test was successfully destroyed.'
+  end
 
-    def edit; end
+  private
 
-    def create
-      @test = Test.new(test_params)
+  def set_test
+    @test = Test.find(params[:id])
+  end
 
-      if @test.save
-        redirect_to admin_test_url(@test), notice: 'Test was successfully created.'
-      else
-        render :new, status: :unprocessable_entity
-      end
-    end
-
-    def update
-      if @test.update(test_params)
-        redirect_to admin_test_url(@test), notice: 'Test was successfully updated.'
-      else
-        render :edit, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @test.destroy
-      redirect_to admin_tests_url, notice: 'Test was successfully destroyed.'
-    end
-
-    private
-
-    def set_test
-      @test = Test.find(params[:id])
-    end
-
-    def test_params
-      params.require(:test).permit(:title, :level, :author_id, :category_id)
-    end
+  def test_params
+    params.require(:test).permit(:title, :level, :category_id)
   end
 end

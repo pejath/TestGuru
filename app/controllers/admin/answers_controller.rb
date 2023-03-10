@@ -1,55 +1,53 @@
 # frozen_string_literal: true
 
-module Admin
-  class AnswersController < Admin::BaseController
-    before_action :set_question, only: %i[new create]
-    before_action :set_answer, only: %i[show edit update destroy]
-    def show; end
+class Admin::AnswersController < Admin::BaseController
+  before_action :set_question, only: %i[new create]
+  before_action :set_answer, only: %i[show edit update destroy]
+  def show; end
 
-    def new
-      @answer = @question.answers.build
+  def new
+    @answer = @question.answers.build
+  end
+
+  def edit; end
+
+  def create
+    @answer = @question.answers.build(answer_params)
+
+    if @answer.save
+      redirect_to admin_answer_url(@answer), notice: 'Answer was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
+  end
 
-    def edit; end
-
-    def create
-      @answer = @question.answers.build(answer_params)
-
-      if @answer.save
-        redirect_to admin_answer_url(@answer), notice: 'Answer was successfully created.'
-      else
-        render :new, status: :unprocessable_entity
-      end
+  def update
+    if @answer.update(answer_params)
+      redirect_to admin_answer_url(@answer), notice: 'Answer was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
     end
+  end
 
-    def update
-      if @answer.update(answer_params)
-        redirect_to admin_answer_url(@answer), notice: 'Answer was successfully updated.'
-      else
-        render :edit, status: :unprocessable_entity
-      end
-    end
+  def destroy
+    @answer.destroy
 
-    def destroy
-      @answer.destroy
+    redirect_to admin_question_path(@answer.question), notice: 'Answer was successfully destroyed.'
+  end
 
-      redirect_to admin_question_path(@answer.question), notice: 'Answer was successfully destroyed.'
-    end
+  private
 
-    private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_answer
+    @answer = Answer.find(params[:id])
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer
-      @answer = Answer.find(params[:id])
-    end
+  def set_question
+    @question = Question.find(params[:question_id])
+  end
 
-    def set_question
-      @question = Question.find(params[:question_id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def answer_params
-      params.require(:answer).permit(:body, :correct)
-    end
+  # Only allow a list of trusted parameters through.
+  def answer_params
+    params.require(:answer).permit(:body, :correct)
   end
 end
