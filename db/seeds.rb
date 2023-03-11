@@ -10,8 +10,15 @@
 
 Category.create!(title: 'Category 1')
 
-User.create!(username: 'name', email: 'user@mail.com', role: 'user', password: 'qwerty12')
-admin = User.create(username: 'admin', email: 'admin@mail.com', role: 'admin', password: 'qwerty12')
+user = User.new(first_name: 'Name1', last_name: 'Surname2', username: 'name', email: 'user@mail.com',
+                password: 'qwerty12')
+user.skip_confirmation!
+user.save!
+
+admin = Admin.new(first_name: 'Name', last_name: 'Surname', username: 'admin', email: 'admin@mail.com',
+                  password: 'qwerty12')
+admin.skip_confirmation!
+admin.save!
 
 tests = Test.create([{ title: 'title 1', level: 1, category: Category.first, author: admin },
                      { title: 'title 2', level: 2, category: Category.first, author: admin },
