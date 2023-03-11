@@ -55,6 +55,8 @@ en:
         body: "body"
       edit:
         header: "Editing test"
+      form:
+        category: "Select category"
 
   tests_mailer:
     completed_test:

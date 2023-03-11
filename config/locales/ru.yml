@@ -57,6 +57,8 @@ ru:
         body: "тело"
       edit:
         header: "Редактирование теста"
+      form:
+        category: "Выберите категорию"
 
   tests_mailer:
     completed_test:
