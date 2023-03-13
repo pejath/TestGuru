@@ -1,12 +1,12 @@
-<h1>Passing the <%= @test_passage.test.title %> Test</h1>
+<h1><%= t('.header', title: @test_passage.test.title) %></h1>
 
 <% if @test_passage.current_question.nil? %>
-  <p> There is no Questions </p>
+  <p> <%= t('.no_questions') %> </p>
   <%= link_to 'Back to Tests', tests_path %>
 
 <% elsif @test_passage.current_question.answers.count.zero? %>
   <%= render 'current_question' %>
-  <p> There is no Answers in Question </p>
+  <p> <%= t('.answers') %> </p>
   <%= link_to 'Back to Tests', tests_path %>
 
 <% else %>
