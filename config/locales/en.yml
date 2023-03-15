@@ -6,12 +6,27 @@ en:
       test:
         create: "Create test"
         update: "Update test"
+      answer:
+        create: "Create answer"
+        update: "Update answer"
     label:
       test:
         category_id: "Category"
         level: "Level"
         title: "Title"
-
+      answer:
+        body: 'Body'
+        correct: 'Correct'
+      question:
+        body: 'Body'
+      user:
+        username: 'Username'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Confirm password'
+      session:
+        email: 'Email'
+        password: 'Password'
   shared:
     errors:
       header:

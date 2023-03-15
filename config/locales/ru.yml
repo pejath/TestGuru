@@ -6,12 +6,27 @@ ru:
       test:
         create: "Создать тест"
         update: "Обновить тест"
+      answer:
+        create: "Создать вопрос"
+        update: "Обновить вопрос"
     label:
       test:
         category_id: "Категория"
         level: "Уровень"
         title: "Название"
-
+      answer:
+        body: 'Тело'
+        correct: 'Верно'
+      question:
+        body: 'Тело'
+      user:
+        username: 'Имя пользователя'
+        email: 'Почта'
+        password: 'Пароль'
+        password_confirmation: 'Подтвердите парль'
+      session:
+        email: 'Почта'
+        password: 'Пароль'
   shared:
     errors:
       header:
