@@ -47,7 +47,9 @@ ru:
       create:
         success: "Тест был успешно создан."
       index:
+        <<: *table_headers
         new: "Новый тест"
+        header: "Управление тестами"
       new:
         header: "Новый тест"
       show:
@@ -55,10 +57,12 @@ ru:
         author: "Автор"
         category: "Категория"
         body: "тело"
+        test_info: "Информация о тесте"
       edit:
         header: "Редактирование теста"
       form:
         category: "Выберите категорию"
+        create: "Создать тест"
 
   tests_mailer:
     completed_test:

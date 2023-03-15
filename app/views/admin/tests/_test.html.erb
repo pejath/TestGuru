@@ -2,7 +2,7 @@
   <td>"<%= test.title %>"</td>
   <td><%= test_level(test) %></td>
   <td><%= test.questions.count %></td>
-  <td><%= link_to t('action.back'), admin_test_path(test) %></td>
+  <td><%= link_to t('action.show'), admin_test_path(test) %></td>
   <td><%= link_to t('action.edit'), edit_admin_test_path(test) %></td>
   <td><%= button_to t('action.delete'), admin_test_path(test), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>

@@ -2,7 +2,9 @@
 
 module ApplicationHelper
   def flash_message(type, message)
-    content_tag :p, message, class: "flash #{type}" unless message.nil?
+    bootstrap_type = { notice: 'alert-success', alert: 'alert-danger' }
+
+    content_tag :div, message, class: "alert #{bootstrap_type[type.to_sym]}" unless message.nil?
   end
 
   def current_year
@@ -10,6 +12,6 @@ module ApplicationHelper
   end
 
   def github_url(author, repo)
-    link_to author, repo, target: '_blank'
+    link_to author, repo, target: '_blank', class: 'text-decoration-none text-muted'
   end
 end

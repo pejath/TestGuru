@@ -43,9 +43,11 @@ en:
   admin:
     tests:
       create:
-       success: "Test was successfully created."
+        success: "Test was successfully created."
       index:
         new: "New test"
+        header: "Tests controlls"
+        <<: *table_headers
       new:
         header: "New test"
       show:
@@ -53,10 +55,12 @@ en:
         author: "Author"
         category: "Category"
         body: "body"
+        test_info: "Test info"
       edit:
         header: "Editing test"
       form:
         category: "Select category"
+        create: "Create test"
 
   tests_mailer:
     completed_test:
