@@ -1,0 +1,15 @@
+<h1>Gists</h1>
+<table class="table table-hover">
+  <thead class="table-dark">
+  <tr>
+    <th><%= t('.question') %></th>
+    <th><%= t('.url') %></th>
+    <th><%= t('.email') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <%= render @gists %>
+  </tbody>
+</table>
+<br>
