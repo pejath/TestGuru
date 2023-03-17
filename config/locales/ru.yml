@@ -56,7 +56,9 @@ ru:
       answers: "Отсутствуют ответы на вопрос"
     current_question:
       header: "Текущий вопрос"
-    gist:
+
+  gists:
+    create:
       success: "Gist успешно сохранен! Ваш Gist: %{href}"
       failure: "Во время сохранения Gist произошла ошибка"
 

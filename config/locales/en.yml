@@ -54,7 +54,9 @@ en:
       answers: "There is no answers"
     current_question:
       header: "Current question"
-    gist:
+
+  gists:
+    create:
       success: "Gist was successfully saved! Your Gist: %{href}"
       failure: "An error occurred while saving gist"
 
