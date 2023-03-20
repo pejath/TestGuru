@@ -57,6 +57,11 @@ ru:
     current_question:
       header: "Текущий вопрос"
 
+  gists:
+    create:
+      success: "Gist успешно сохранен! Ваш Gist: %{href}"
+      failure: "Во время сохранения Gist произошла ошибка"
+
   admin:
     tests:
       create:
@@ -78,7 +83,16 @@ ru:
       form:
         category: "Выберите категорию"
         create: "Создать тест"
+    gists:
+      index:
+        question: "Вопрос"
+        url: "Ссылка"
+        username: "Имя пользователя"
+        email: "Почта"
 
   tests_mailer:
     completed_test:
       subject: "Вы успешно завершили тест на TestGuru!"
+  gist:
+    question: "Вопрос Gist"
+    about: "Вопрос о '%{title}' из TestGuru"

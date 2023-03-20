@@ -2,7 +2,7 @@
 
 <% if @test_passage.current_question.nil? %>
   <p> <%= t('.no_questions') %> </p>
-  <%= link_to 'Back to Tests', tests_path %>
+  <%= link_to t('action.root'), tests_path %>
 
 <% elsif @test_passage.current_question.answers.count.zero? %>
   <%= render 'current_question' %>

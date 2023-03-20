@@ -55,6 +55,11 @@ en:
     current_question:
       header: "Current question"
 
+  gists:
+    create:
+      success: "Gist was successfully saved! Your Gist: %{href}"
+      failure: "An error occurred while saving gist"
+
   admin:
     tests:
       create:
@@ -76,7 +81,16 @@ en:
       form:
         category: "Select category"
         create: "Create test"
+    gists:
+      index:
+        question: "Question"
+        url: "URL"
+        username: "Username"
+        email: "Email"
 
   tests_mailer:
     completed_test:
       subject: "You just completed the TestGuru test!"
+  gist:
+    question: "Gist question"
+    about: "A question about '%{title}' from TestGuru"

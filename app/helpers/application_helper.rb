@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  BOOTSTRAP_TYPE = { 'notice' => 'alert-success', 'alert' => 'alert-danger' }
+  BOOTSTRAP_TYPE = { 'notice' => 'alert-success', 'alert' => 'alert-danger' }.freeze
 
   def flash_message(type, message)
-    content_tag :div, message, class: "alert #{BOOTSTRAP_TYPE[type]}" unless message.nil?
+    content_tag :div, message.html_safe, class: "alert #{BOOTSTRAP_TYPE[type]}" unless message.nil?
   end
 
   def current_year

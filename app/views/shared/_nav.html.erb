@@ -5,6 +5,7 @@
       <% if user_signed_in? %>
         Welcome, <b><%= current_user.username %></b> Guru |
         <%= current_user.admin? ? link_to('admin panel', admin_tests_path) + ' | ' : nil %>
+        <%= current_user.admin? ? link_to('gists', admin_gists_path) + ' | ' : nil %>
         <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to 'Log In', new_user_session_path %> |
