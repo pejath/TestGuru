@@ -2,17 +2,19 @@ window.addEventListener('load', () => {
     const passwordConfirmation = document.getElementById('user_password_confirmation');
     const password = document.getElementById('user_password');
 
-    password.addEventListener('input', () => {
-        if (!password.value) {
-            resetClasses(passwordConfirmation);
-        }
-    });
+    if (passwordConfirmation) {
+        password.addEventListener('input', () => {
+            if (!password.value) {
+                resetClasses(passwordConfirmation);
+            }
+        });
 
-    passwordConfirmation.addEventListener('input', () => {
-        if (password.value) {
-            checkState(password.value, passwordConfirmation);
-        }
-    });
+        passwordConfirmation.addEventListener('input', () => {
+            if (password.value) {
+                checkState(password.value, passwordConfirmation);
+            }
+        });
+    }
 });
 
 function resetClasses(element) {
