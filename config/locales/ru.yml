@@ -82,7 +82,8 @@ ru:
         header: "Редактирование теста"
       form:
         category: "Выберите категорию"
-        create: "Создать тест"
+      form_inline:
+        submit: "Сохранить"
     gists:
       index:
         question: "Вопрос"

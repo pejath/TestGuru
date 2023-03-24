@@ -81,6 +81,8 @@ en:
       form:
         category: "Select category"
         create: "Create test"
+      form_inline:
+        submit: "Save"
     gists:
       index:
         question: "Question"
