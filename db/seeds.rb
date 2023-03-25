@@ -10,10 +10,6 @@
 
 Category.create!(title: 'Category 1')
 
-user = User.new(first_name: 'Name1', last_name: 'Surname2', username: 'name', email: 'user@mail.com',
-                password: 'qwerty12')
-user.skip_confirmation!
-user.save!
 
 admin = Admin.new(first_name: 'Name', last_name: 'Surname', username: 'admin', email: 'admin@mail.com',
                   password: 'qwerty12')
@@ -28,7 +24,6 @@ tests.each do |test|
   Question.create!([{ body: "test #{test.id} question 1", test: },
                     { body: "test #{test.id} question 2", test: },
                     { body: "test #{test.id} question 3", test: }])
-  TestPassage.create!(correct_questions: 0, test:, user: admin)
 end
 
 Question.all.each do |question|
