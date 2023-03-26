@@ -96,3 +96,6 @@ en:
   gist:
     question: "Gist question"
     about: "A question about '%{title}' from TestGuru"
+  sessions:
+    new:
+      remember: "Remember me"

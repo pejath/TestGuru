@@ -1,4 +1,4 @@
-<tr class="tests-table">
+<tr class="centered-data-table">
   <td>
     <%= content_tag :span, test.title, class: 'test-title', data: { test_id: test.id } %>
     <%= render 'form_inline', test: test == @test ? @test : test %>
@@ -11,5 +11,5 @@
                 data: { test_id: test.id },
                 class: 'form-inline-link' %>
   </td>
-  <td><%= button_to t('action.delete'), admin_test_path(test), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td><%= button_to t('action.delete'), admin_test_path(test), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %></td>
 </tr>

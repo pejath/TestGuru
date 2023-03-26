@@ -97,3 +97,6 @@ ru:
   gist:
     question: "Вопрос Gist"
     about: "Вопрос о '%{title}' из TestGuru"
+  sessions:
+    new:
+      remember: "Запомнить меня"
