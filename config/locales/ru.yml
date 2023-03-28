@@ -100,3 +100,6 @@ ru:
   sessions:
     new:
       remember: "Запомнить меня"
+  contacts:
+    new:
+      contacts_mail: "Форма обратной связи"

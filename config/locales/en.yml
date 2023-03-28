@@ -99,3 +99,6 @@ en:
   sessions:
     new:
       remember: "Remember me"
+  contacts:
+    new:
+      contacts_mail: "Contacts Form"
