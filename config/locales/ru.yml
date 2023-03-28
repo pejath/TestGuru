@@ -97,3 +97,6 @@ ru:
   gist:
     question: "Вопрос Gist"
     about: "Вопрос о '%{title}' из TestGuru"
+  contacts:
+    new:
+      contacts_mail: "Форма обратной связи"
