@@ -2,7 +2,7 @@
 
 <p>
   <%= t('.count') %>: <%= @test_passage.questions_count %> <br>
-  <%= t('.correct') %>Correct Answers: <%= @test_passage.correct_questions %>
+  <%= t('.correct') %>: <%= @test_passage.correct_questions %>
 </p>
 
 <% if @test_passage.successfully_completed? %>
@@ -11,4 +11,4 @@
   <p><%= t('.failure') %> <strong color="red"><%= @test_passage.percentage %>%</strong></p>
 <% end %>
 
-<%= link_to 'All Tests', tests_path %>
+<%= link_to t('action.all_tests'), tests_path %>

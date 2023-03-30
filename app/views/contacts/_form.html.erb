@@ -1,20 +1,22 @@
 <%= form_with model: @contact, locale: true do |form| %>
   <%= render 'shared/errors', resource: @contact %>
 
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name, id: :contact_name%>
-  </p>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, id: :contact_name, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.text_field :email, id: :contact_email, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.text_area :body, id: :contact_body, class: 'form-control' %>
+  </div>
 
   <p>
-    <%= form.label :email %><br>
-    <%= form.text_field :email, id: :contact_email%>
+    <%= form.submit t('.create_contacts'), class: 'btn btn-primary' %>
   </p>
-
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body, id: :contact_body %>
-  </p>
-
-  <p><%= form.submit %></p>
 <% end %>

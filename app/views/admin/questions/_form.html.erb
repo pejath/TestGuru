@@ -1,12 +1,12 @@
 <%= form_with(model: [:admin, @test, question]) do |form| %>
   <%= render 'shared/errors', resource: question %>
 
-  <div>
-    <%= form.label :body %>
-    <%= form.text_field :body, id: :question_body %>
+  <div class="mb-3">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.text_field :body, id: :question_body, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

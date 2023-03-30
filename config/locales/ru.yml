@@ -1,8 +1,13 @@
 ru:
   hello: "Привет мир"
+  true: 'Да'
+  false: 'Нет'
 
   helpers:
     submit:
+      question:
+        create: 'Сохранить Вопрос'
+        update: 'Обновить Вопрос'
       test:
         create: "Создать тест"
         update: "Обновить тест"
@@ -90,6 +95,28 @@ ru:
         url: "Ссылка"
         username: "Имя пользователя"
         email: "Почта"
+    questions:
+      show:
+        test: "Тест"
+        question: "Вопрос"
+        answer: "Ответы"
+      edit:
+        edit_question: "Редактировать вопрос из '%{title}'"
+      new:
+        new_question: "Создать новый вопрос для '%{title}'"
+    answers:
+      show:
+        question: "Вопрос"
+        answer: "Ответ"
+        correct: "Правильно"
+      answer:
+        correct: "Правильно"
+      edit:
+        answers:
+          edit: "Редактирование вопроса"
+        question: "Вопрос"
+      new:
+        question: "Вопрос"
 
   tests_mailer:
     completed_test:
@@ -103,3 +130,5 @@ ru:
   contacts:
     new:
       contacts_mail: "Форма обратной связи"
+    form:
+      create_contacts: "Отправить"
