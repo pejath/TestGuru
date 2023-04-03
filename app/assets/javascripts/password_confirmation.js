@@ -4,8 +4,11 @@ window.addEventListener('load', () => {
 
     if (passwordConfirmation) {
         password.addEventListener('input', () => {
-            if (!password.value) {
+            if (!password.value || !passwordConfirmation.value) {
                 resetClasses(passwordConfirmation);
+            }
+            else {
+                checkState(password.value, passwordConfirmation);
             }
         });
 

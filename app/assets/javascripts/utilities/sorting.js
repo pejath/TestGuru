@@ -26,7 +26,7 @@ function sortRowsByTitle() {
     }
 
     const sortedTable = document.createElement('table')
-    sortedTable.classList.add('table-hover', 'table')
+    sortedTable.classList.add('table-hover', 'table', 'centered-data-table')
 
     const sortedtHead = sortedTable.createTHead()
     sortedtHead.classList.add('table-dark')

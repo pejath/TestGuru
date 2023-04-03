@@ -1,8 +1,13 @@
 en:
   hello: "Hello world"
+  true: 'Да'
+  false: 'Нет'
 
   helpers:
     submit:
+      question:
+        create: 'Create Question'
+        update: 'Update Question'
       test:
         create: "Create test"
         update: "Update test"
@@ -89,6 +94,28 @@ en:
         url: "URL"
         username: "Username"
         email: "Email"
+    questions:
+      show:
+        test: "Test"
+        question: "Question"
+        answer: "Answers"
+      edit:
+        edit_question: "Edit '%{title}' Question"
+      new:
+        new_question: "Create new '%{title}' Question"
+    answers:
+      show:
+        question: "Question"
+        answer: "Answer"
+        correct: "Correct"
+      answer:
+        correct: "Correct"
+      edit:
+        answers:
+          edit: "Editing Answer"
+        question: "Question"
+      new:
+        question: "Question"
 
   tests_mailer:
     completed_test:
@@ -96,6 +123,12 @@ en:
   gist:
     question: "Gist question"
     about: "A question about '%{title}' from TestGuru"
+  sessions:
+    new:
+      remember: "Remember me"
   contacts:
     new:
       contacts_mail: "Contacts Form"
+    form:
+      create_contacts: "Send"
+      

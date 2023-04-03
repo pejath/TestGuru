@@ -1,18 +1,13 @@
+<h4 class="fw-light">
+  <%= t('.question') %>: <%= @answer.question.body %>
+</h4>
 
-<h1>Question</h1>
-<p>
-  <%= @answer.question.body %>
-</p>
+<h2><%= t('.answer') %>: <%= @answer.body %></h2>
 
-<p>
-  <strong>Answer:</strong>
-  <%= @answer.body %>
-</p>
-
-<p>
-  <strong>Correct:</strong>
-  <%= @answer.correct %>
-</p>
+<h4>
+  <strong><%= t('.correct') %>:</strong>
+  <%= t @answer.correct.to_s %>
+</h4>
 
 <%= link_to t('action.edit'), edit_admin_answer_path(@answer) %> |
 <%= link_to t('action.back'), admin_question_path(@answer.question) %>
