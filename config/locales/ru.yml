@@ -47,7 +47,8 @@ ru:
       level: "Уровень"
       questions: "Вопросы"
       actions: "Действия"
-
+      time: 'Время'
+      min: 'мин.'
   test_passages:
     result:
       header: "Тест %{title} завершен"

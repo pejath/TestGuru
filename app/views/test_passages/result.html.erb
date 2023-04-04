@@ -1,4 +1,4 @@
-<h1><%= t('.header', title: @test_passage.test.title) %></h1>
+<h1 id='test-results' data-test-passage='<%= @test_passage.id %>'><%= t('.header', title: @test_passage.test.title) %></h1>
 
 <p>
   <%= t('.count') %>: <%= @test_passage.questions_count %> <br>
@@ -6,9 +6,9 @@
 </p>
 
 <% if @test_passage.successfully_completed? %>
-  <p><%= t('.success') %> <strong color="green"><%= @test_passage.percentage %>%</strong></p>
+  <p><%= t('.success') %> <strong color="green"><%= @test_passage.percentage.round(2) %>%</strong></p>
 <% else %>
-  <p><%= t('.failure') %> <strong color="red"><%= @test_passage.percentage %>%</strong></p>
+  <p><%= t('.failure') %> <strong color="red"><%= @test_passage.percentage.round(2) %>%</strong></p>
 <% end %>
 
 <%= link_to t('action.all_tests'), tests_path %>
