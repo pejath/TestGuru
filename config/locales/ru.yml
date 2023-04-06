@@ -117,6 +117,9 @@ ru:
         question: "Вопрос"
       new:
         question: "Вопрос"
+    badges:
+      form:
+        rule_type: "Выбирите тип"
 
   tests_mailer:
     completed_test:
@@ -132,3 +135,10 @@ ru:
       contacts_mail: "Форма обратной связи"
     form:
       create_contacts: "Отправить"
+  badges:
+    index: &badges_table
+      badges: "Бейджи"
+      name: "Название"
+      image: "Изображение"
+    achieved:
+    <<: *badges_table

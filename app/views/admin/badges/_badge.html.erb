@@ -1,0 +1,9 @@
+<tr>
+  <td><%= badge.name %></td>
+  <td><img src="<%= badge.image_url %>" style="width: 50px"></td>
+  <td><%= badge.rule_type %></td>
+  <td><%= badge.rule_option %></td>
+  <td><%= link_to 'Show', admin_badge_path(badge) %></td>
+  <td><%= link_to 'Edit', edit_admin_badge_path(badge) %></td>
+  <td><%= link_to 'Destroy', admin_badge_path(badge), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

@@ -116,6 +116,9 @@ en:
         question: "Question"
       new:
         question: "Question"
+    badges:
+      form:
+        rule_type: "Select type"
 
   tests_mailer:
     completed_test:
@@ -131,4 +134,11 @@ en:
       contacts_mail: "Contacts Form"
     form:
       create_contacts: "Send"
-      
+
+  badges:
+    index: &badges_table
+      badges: "Badges"
+      name: "Name"
+      image: "Image"
+    achieved:
+      <<: *badges_table

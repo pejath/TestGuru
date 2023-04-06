@@ -65,13 +65,13 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "TestGuru_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options= { host: 'test-guru-glud.onrender.com' }
+  config.action_mailer.default_url_options = { host: 'test-guru-glud.onrender.com' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings= {
+  config.action_mailer.smtp_settings = {
     address: 'smtp-relay.sendinblue.com',
     port: 587,
-    user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
+    user_name: ENV.fetch('SMTP_USERNAME', nil),
+    password: ENV.fetch('SMTP_PASSWORD', nil),
     authentication: 'plain',
     enable_starttls_auto: true
   }

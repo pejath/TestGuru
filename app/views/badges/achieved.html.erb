@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= t('.badges') %></h1>
+
+<table>
+  <thead>
+  <tr>
+    <th><%= t('.name') %></th>
+    <th><%= t('.image') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <%= render @badges %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to t('action.back'), badges_path %>

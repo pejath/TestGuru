@@ -1,0 +1,35 @@
+<%= form_with(model: [:admin, badge]) do |form| %>
+  <%= render 'shared/errors', resource: badge %>
+
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.collection_select :image_url, Badge::IMG_URLS, :last, :first %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rule_type %>
+    <%= form.collection_select :rule_type, %w[first_try category level], :to_s,
+                               :to_s, { prompt: t('.rule_type') }, { class: 'form-select', id: 'rule-type' } %>
+  </div>
+
+  <div class="field hide" id="category-option">
+    <%= form.label :rule_option %>
+    <%= form.collection_select :rule_option, @categories, :id, :title,
+                               { class: 'form-select', disabled: true }, {id: 'category-input',} %>
+  </div>
+
+  <div class="field hide" id="level-option">
+    <%= form.label :rule_option %>
+    <%= form.number_field :rule_option, class: 'form-control', id: 'level-input', disabled: true, value: 1 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit id: 'submit' %>
+  </div>
+<% end %>
