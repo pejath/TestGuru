@@ -14,22 +14,27 @@ window.addEventListener('load', () => {
             level_option.classList.remove('hide');
             level_input.disabled = false;
         }
+
         rule_type.addEventListener('input', () => {
-            if (rule_type.value === 'category') {
-                category_option.classList.remove('hide');
-                category_input.disabled = false;
-                level_option.classList.add('hide');
-                level_input.disabled = true;
-            } else if (rule_type.value === 'level') {
-                level_option.classList.remove('hide');
-                level_input.disabled = false;
-                category_option.classList.add('hide');
-                category_input.disabled = true;
-            } else {
-                level_option.classList.add('hide');
-                category_option.classList.add('hide');
-                level_input.disabled = true;
-                category_input.disabled = true;
+            switch (rule_type.value) {
+                case 'category':
+                    category_option.classList.remove('hide');
+                    category_input.disabled = false;
+                    level_option.classList.add('hide');
+                    level_input.disabled = true;
+                    break;
+                case 'level':
+                    level_option.classList.remove('hide');
+                    level_input.disabled = false;
+                    category_option.classList.add('hide');
+                    category_input.disabled = true;
+                    break;
+                default:
+                    level_option.classList.add('hide');
+                    category_option.classList.add('hide');
+                    level_input.disabled = true;
+                    category_input.disabled = true;
+                    break;
             }
         });
     }
