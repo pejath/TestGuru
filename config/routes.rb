@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   resources :contacts, only: %i[new create]
 
+  resources :badges, only: :index
+  get :achieved, controller: :badges
+
   resources :tests, only: :index do
     member do
       post :start
@@ -31,5 +34,6 @@ Rails.application.routes.draw do
       end
     end
     resources :gists, only: :index
+    resources :badges, shallow: true
   end
 end

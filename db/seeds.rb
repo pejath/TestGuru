@@ -32,3 +32,6 @@ if Admin.all.empty?
                     { body: "question #{question.id} answer 3", correct: false, question: }])
   end
 end
+Badge.create!([{ name: 'badge 1 category', rule_type: 'category', rule_option: '1' },
+               { name: 'badge 2 first', rule_type: 'first_try' },
+               { name: 'badge 3 level 2', rule_type: 'level', rule_option: '2' }])
