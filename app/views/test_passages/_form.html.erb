@@ -1,5 +1,6 @@
 <%= form_with url: test_passage_path(@test_passage), local: true,
-              data: { current_question: @test_passage.current_question_num, last_question: @test_passage.questions_count },
+              data: { current_question: @test_passage.current_question_num, last_question: @test_passage.questions_count,
+                      test_timer: @test_passage.test.time, test_passage: @test_passage.id}, # ToDo: timer
               class: 'test-passage-question',
               method: :put do |form| %>
   <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>

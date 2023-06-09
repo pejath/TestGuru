@@ -6,6 +6,7 @@
   <div class="card-body">
     <p class="card-text"><strong><%= t('.title') %>:</strong> <%= @test.title %></p>
     <p class="card-text"><strong><%= t('.level') %>:</strong> <%= test_level(@test) %></p>
+    <p class="card-text"><strong><%= t('.time') %>:</strong> <%= "#{@test.time} #{t('.min')}" %> </p>
     <p class="card-text"><strong><%= t('.author') %>:</strong> <%= @test.author.full_name %></p>
     <p class="card-text"><strong><%= t('.category') %>:</strong> <%= @test.category.title %></p>
 

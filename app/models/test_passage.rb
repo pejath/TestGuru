@@ -10,7 +10,7 @@ class TestPassage < ApplicationRecord
   before_validation :set_question, on: %i[create update]
 
   def completed?
-    current_question.nil?
+    current_question.nil? || time_is_up?
   end
 
   def questions_count
@@ -22,7 +22,7 @@ class TestPassage < ApplicationRecord
   end
 
   def successfully_completed?
-    percentage >= 85
+    percentage >= PASS_SCORE
   end
 
   def percentage
@@ -30,12 +30,22 @@ class TestPassage < ApplicationRecord
   end
 
   def accept!(answer_ids)
+    self.correct_questions += 1 if correct_answer?(answer_ids) && !time_is_up?
     self.correct_questions += 1 if correct_answer?(answer_ids)
     self.success = successfully_completed?
+
     save!
   end
 
   private
+
+  def timer_finish_time
+    created_at + test.time.minutes
+  end
+
+  def time_is_up?
+    timer_finish_time.past?
+  end
 
   def set_question
     if current_question.nil?

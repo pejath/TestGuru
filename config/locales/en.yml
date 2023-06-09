@@ -45,7 +45,8 @@ en:
       level: "Level"
       questions: "Questions"
       actions: "Actions"
-
+      time: 'Time'
+      min: 'min.'
   test_passages:
     result:
       header: "Test %{title} completed"
@@ -134,7 +135,6 @@ en:
       contacts_mail: "Contacts Form"
     form:
       create_contacts: "Send"
-
   badges:
     index: &badges_table
       badges: "Badges"
@@ -142,3 +142,4 @@ en:
       image: "Image"
     achieved:
       <<: *badges_table
+
