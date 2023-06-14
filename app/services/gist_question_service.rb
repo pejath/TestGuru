@@ -27,7 +27,7 @@ class GistQuestionService
     {
       description: I18n.t('gist.about', title: @test.title),
       files: {
-        'test-guru-question.txt' => {
+        'test-io-question.txt' => {
           content: gist_content
         }
       }

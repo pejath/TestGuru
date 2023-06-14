@@ -5,19 +5,26 @@ class TestPassagesController < ApplicationController
 
   def show; end
 
-  def result; end
+  def result
+    @prev_passages = current_user.test_passages.order(:created_at).reverse[1..2]
+  end
 
   def update
     @test_passage.accept!(params[:answer_ids])
 
-
-    if @test_passage.completed? || params[:times_up]
-      BadgesService.new(@test_passage).call
-      TestsMailer.completed_test(@test_passage).deliver_now
-      redirect_to result_test_passage_path(@test_passage)
-    else
-      render :show
+    respond_to do |format|
+      if @test_passage.completed? || params[:times_up]
+        BadgesService.new(@test_passage).call
+        # TestsMailer.completed_test(@test_passage).deliver_now
+        format.js { render js: "window.location='#{result_test_passage_path(@test_passage)}'" }
+      else
+        format.html { render :show }
+        format.js
+      end
     end
+
+  rescue
+    redirect_to result_test_passage_path(@test_passage)
   end
 
   private

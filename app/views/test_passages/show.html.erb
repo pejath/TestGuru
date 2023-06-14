@@ -1,5 +1,3 @@
-<h1><%= t('.header', title: @test_passage.test.title) %></h1>
-
 <% if @test_passage.current_question.nil? %>
   <p> <%= t('.no_questions') %> </p>
   <%= link_to t('action.root'), tests_path %>
@@ -11,5 +9,48 @@
 
 <% else %>
   <%= render 'current_question' %>
-  <%= render 'form' %>
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container d-flex justify-content-center" id="car-items">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <% end %>
+<style>
+    .carousel-container {
+        display: flex;
+        justify-content: center;
+        width: 100%; /* Ширина контейнера на 100% */
+        overflow: hidden;
+    }
+
+    .my-carousel {
+        display: flex;
+    }
+
+    .carousel-previous {
+        flex: 0 0 50%;
+        transform: translateX(-100%);
+    }
+
+    .carousel-current {
+        flex: 0 0 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .carousel-current .question-form {
+        width: 80%;
+    }
+
+    .carousel-current .question-form .card-title {
+        white-space: normal;
+    }
+
+
+</style>

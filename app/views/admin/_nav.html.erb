@@ -1,10 +1,10 @@
 <header class="navbar bg-light">
   <div class="container-fluid">
 
-    <h2><%= link_to 'TestGuru', root_path, class: 'navbar-brand' %></h2>
+    <h2><%= link_to 'TestIO', root_path, class: 'navbar-brand' %></h2>
     <span></span>
     <span class="navbar-text">
-      Welcome, <b class="nav-admin user-nickname"><%= current_user.username %></b> Guru |
+      Welcome, <b class="nav-admin user-nickname"><%= current_user.username %></b> |
       <%= link_to t('action.admin_panel'), admin_tests_path %> |
       <%= link_to('gists', admin_gists_path) %> |
       <%= link_to(t('action.contacts'), new_contact_path)%> |

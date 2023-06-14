@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ContactsMailer < ApplicationMailer
-  default to: %("TestGuru" <admin@testguru.com>)
+  default to: %("TestIO" <admin@TestIO.com>)
 
   def contacts_email(contacts)
     @name = contacts.name

@@ -55,7 +55,7 @@ ru:
       count: "Количество вопросов в тесте"
       correct: "Правильных ответов"
       success: "Вы успешно закончили тест на"
-      failure: "Вы провалили тест, ваш процент"
+      failure: "Вы провалили тест, ваш процент правильных ответов: "
     show:
       header: "Прохождение теста %{title}"
       no_questions: "Здесь нет вопросов"
@@ -124,10 +124,10 @@ ru:
 
   tests_mailer:
     completed_test:
-      subject: "Вы успешно завершили тест на TestGuru!"
+      subject: "Вы успешно завершили тест на TestIO!"
   gist:
     question: "Вопрос Gist"
-    about: "Вопрос о '%{title}' из TestGuru"
+    about: "Вопрос о '%{title}' из TestIO"
   sessions:
     new:
       remember: "Запомнить меня"

@@ -1,0 +1,12 @@
+.select-style {
+  text-align: center;
+  padding: 10px 24px;
+  gap: 10px;
+  height: 41px;
+  background: #F5B6E3;
+  border-radius: 64px;
+  border: none; // Убираем стандартную рамку
+  appearance: none; // Убираем стандартный вид в некоторых браузерах
+  -webkit-appearance: none; // Убираем стандартный вид в Safari
+  -moz-appearance: none; // Убираем стандартный вид в Firefox
+}

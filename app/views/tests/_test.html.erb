@@ -1,6 +1,6 @@
-<tr>
-  <td><%= test.title %></td>
-  <td><%= test_level(test) %></td>
-  <td><%= test.questions.count %></td>
-  <td><%= button_to t('action.start'), start_test_path(test), class: 'btn btn-primary' %></td>
-</tr>
+<div class="card mx-3 my-3" style="background: #FFFCFE; padding: 20px 24px;">
+  <h4 class="card-title"><%= test.title %></h4>
+  <p class="card-subtitle mb-2 text-body-secondary">Уровень: <%= test.level %>|
+    Категория: <%= test.category.title.truncate(15) %></p>
+  <p><%= link_to t('action.start'), start_test_path(test), style: '', method: :post %></p>
+</div>

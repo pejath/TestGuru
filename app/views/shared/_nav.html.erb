@@ -1,9 +1,9 @@
 <header class="navbar bg-light">
   <div class="container-fluid">
-    <h2><%= link_to 'TestGuru', root_path, class: 'navbar-brand' %></h2>
+    <h2><%= link_to 'TestIO', root_path, class: 'navbar-brand' %></h2>
     <span class="navbar-text">
       <% if user_signed_in? %>
-        Welcome, <b><%= current_user.username %></b> Guru |
+        Welcome, <b><%= current_user.username %></b> |
         <%= current_user.admin? ? link_to(t('action.admin_panel'), admin_tests_path) + ' | ' : nil %>
         <%= current_user.admin? ? link_to('gists', admin_gists_path) + ' | ' : nil %>
         <%= link_to(t('action.contacts'), new_contact_path)%> |
