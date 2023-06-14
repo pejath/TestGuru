@@ -18,8 +18,8 @@ class BadgesService
 
   def check_rules
     @badges = Badge.all.map do |badge|
-      "BadgesService::#{to_class(badge)}".constantize.call(badge.rule_option, @test_passage, @user)
-    end
+      badge if "BadgesService::#{to_class(badge)}".constantize.call(badge.rule_option, @test_passage, @user)
+    end.compact
   end
 
   def to_class(badge)

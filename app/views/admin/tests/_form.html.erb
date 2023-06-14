@@ -21,7 +21,12 @@
     <%= form.collection_select :category_id, Category.all, :id, :title, { prompt: t('.category') }, { class: 'form-select' } %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, id: :test_description, class: 'form-control' %>
+  </div>
+
   <p>
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit class: 'btn', style:'background-color: #B1CBFF;' %>
   </p>
 <% end %>

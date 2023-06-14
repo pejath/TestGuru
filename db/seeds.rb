@@ -15,15 +15,21 @@ if Admin.all.empty?
   admin.save!
 
   Category.create!(title: 'Category 1')
+  Category.create!(title: 'Category 2')
+  Category.create!(title: 'Category 3')
 
-  tests = Test.create([{ title: 'title 1', level: 1, category: Category.first, author: admin },
-                       { title: 'title 2', level: 2, category: Category.first, author: admin },
-                       { title: 'title 3', level: 3, category: Category.first, author: admin }])
+  tests = Test.create([{ title: 'title 1', level: 1, category_id: rand(1..Category.count), description: "desc 1", author: admin },
+                       { title: 'title 2', level: 2, category_id: rand(1..Category.count), description: "desc 2", author: admin },
+                       { title: 'title 3', level: 3, category_id: rand(1..Category.count), description: "desc 3", author: admin }])
 
   tests.each do |test|
     Question.create!([{ body: "test #{test.id} question 1", test: },
                       { body: "test #{test.id} question 2", test: },
                       { body: "test #{test.id} question 3", test: }])
+  end
+
+  22.times do |i|
+    Question.create!( body: "test #{tests[0].id} question #{i+4}", test: tests[0])
   end
 
   Question.all.each do |question|

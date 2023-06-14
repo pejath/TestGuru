@@ -1,0 +1,101 @@
+//$("#car-items").append("<%= escape_javascript(render 'form') %>");
+const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+if (isMobileDevice) {
+    const carItems = document.getElementById('car-items');
+    const newForm = "<%= escape_javascript(render 'form') %>";
+    const customCards = carItems.getElementsByClassName('custom-card');
+
+// Удаляем текущий элемент
+    customCards[0].classList.add('fade-out');
+    customCards[0].addEventListener('animationend', function () {
+        this.parentNode.removeChild(this);
+
+        // Добавляем новый элемент после исчезновения предыдущего элемента
+        setTimeout(() => {
+            $("#car-items").append(newForm);
+            const latestCustomCard = customCards[customCards.length - 1];
+            latestCustomCard.classList.add('fade-in');
+
+            latestCustomCard.addEventListener('animationend', function () {
+                if (this.classList.contains('fade-in')) {
+                    this.classList.remove('fade-in');
+                }
+            });
+        }, 200); // Задержка в миллисекундах перед добавлением нового элемента (в данном случае 500 мс)
+    });
+
+} else {
+    const carItems = document.getElementById('car-items');
+    const newForm = "<%= escape_javascript(render 'form') %>";
+
+    const submitButtons = document.querySelectorAll('input[type="submit"]');
+    submitButtons.forEach(button => button.remove());
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => checkbox.disabled = true);
+
+    $("#car-items").append(newForm);
+
+    const customCards = carItems.getElementsByClassName('custom-card');
+    const latestCustomCard = customCards[customCards.length - 1];
+    latestCustomCard.classList.add('fade-in');
+
+    if (customCards.length > 2) {
+        customCards[0].classList.add('fade-out');
+        customCards[0].addEventListener('animationend', function () {
+            this.parentNode.removeChild(this);
+        });
+    }
+
+    latestCustomCard.addEventListener('animationend', function () {
+        if (this.classList.contains('fade-in')) {
+            this.classList.remove('fade-in');
+        }
+    });
+}
+
+
+// Входные данные
+// Входные данные
+const currentQuestionNum = <%= @test_passage.current_question_num %>;
+const questionsCount = <%= @test_passage.questions_count %>;
+var maxProgressSteps = 0
+if (isMobileDevice) {
+    maxProgressSteps = 5;
+}else{
+    maxProgressSteps = 10;
+}
+
+// Контейнеры для прогресс-бара и шагов
+const progressBar = document.getElementById('progress-bar');
+const progressSteps = document.getElementById('progress-steps');
+// Генерация шагов прогресса
+function generateProgressSteps(currentQuestionNum, questionsCount) {
+    progressSteps.innerHTML = ''; // Очищаем контейнер перед генерацией
+
+    const stepSize = (maxProgressSteps/questionsCount);
+    const completedSteps = ((currentQuestionNum-1) * stepSize);
+
+    for (let i = 0; i < maxProgressSteps; i++) {
+        const step = document.createElement('div');
+        step.classList.add('step');
+
+        if (i < completedSteps) {
+            step.classList.add('completed');
+        } else if (i === Math.ceil(completedSteps) && Math.ceil(currentQuestionNum) % stepSize !== 0) {
+            const progress = ((currentQuestionNum % stepSize) / stepSize) * 100;
+            step.classList.add('incomplete');
+            step.style.setProperty('--progress', `${progress}%`);
+        }
+
+        progressSteps.appendChild(step);
+    }
+}
+
+// Обновление прогресс-бара
+function updateProgressBar(currentQuestionNum, questionsCount) {
+    generateProgressSteps(currentQuestionNum, questionsCount);
+}
+
+// Вызов функции для инициализации прогресс-бара
+updateProgressBar(currentQuestionNum, questionsCount);

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :badges, only: :index
   get :achieved, controller: :badges
 
-  resources :tests, only: :index do
+  resources :tests, only: %i[index show] do
     member do
       post :start
     end

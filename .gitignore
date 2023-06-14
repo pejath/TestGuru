@@ -34,3 +34,4 @@
 /.idea/
 /test/
 /.env
+/node_modules/

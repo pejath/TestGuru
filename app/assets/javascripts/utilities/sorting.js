@@ -29,7 +29,8 @@ function sortRowsByTitle() {
     sortedTable.classList.add('table-hover', 'table', 'centered-data-table')
 
     const sortedtHead = sortedTable.createTHead()
-    sortedtHead.classList.add('table-dark')
+    sortedtHead.style.setProperty('background-color', '#F5B6E3')
+    // background-color: #F5B6E3
     sortedtHead.appendChild(rows[0])
 
     const sortedtBody = sortedTable.createTBody()
