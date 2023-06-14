@@ -123,10 +123,10 @@ en:
 
   tests_mailer:
     completed_test:
-      subject: "You just completed the TestGuru test!"
+      subject: "You just completed the TestIO test!"
   gist:
     question: "Gist question"
-    about: "A question about '%{title}' from TestGuru"
+    about: "A question about '%{title}' from TestIO"
   sessions:
     new:
       remember: "Remember me"
@@ -142,4 +142,3 @@ en:
       image: "Image"
     achieved:
       <<: *badges_table
-

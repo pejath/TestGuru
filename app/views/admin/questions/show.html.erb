@@ -6,13 +6,13 @@
       </h3>
       <h1><%= t('.question') %>: <%= @question.body %></h1>
       <p>
-        <%= link_to t('action.new_answer'), new_admin_question_answer_path(@question), class: 'btn btn-primary my-2' %>
-        <%= link_to t('action.edit'), edit_admin_question_path(@question), class: 'btn btn-primary my-2' %>
+        <%= link_to t('action.new_answer'), new_admin_question_answer_path(@question), class: 'btn my-2', style:'background-color: #B1CBFF;' %>
+        <%= link_to t('action.edit'), edit_admin_question_path(@question), class: 'btn my-2', style:'background-color: #B1CBFF;' %>
         <%= link_to t('action.back'), admin_test_path(@question.test), class: 'btn btn-secondary my-2' %>
       </p>
     </div>
   </section>
-  <section class="bg-light">
+  <section class="">
     <h3 class="text-center"><%= t('.answer') %></h3>
     <div class="album py-5">
       <div class="container">

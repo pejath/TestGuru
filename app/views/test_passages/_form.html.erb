@@ -1,15 +1,18 @@
-<%= form_with url: test_passage_path(@test_passage), local: true,
-              data: { current_question: @test_passage.current_question_num, last_question: @test_passage.questions_count,
-                      test_timer: @test_passage.test.time, test_passage: @test_passage.id}, # ToDo: timer
-              class: 'test-passage-question',
-              method: :put do |form| %>
-  <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
-    <p>
-      <%= b.check_box id: "answer_ids_#{b.object.id}" %>
-      <%= b.label %>
-    </p>
-  <% end %>
-  <p><%= link_to t('gist.question'), gists_path(@test_passage), method: :post %></p>
+<div class="custom-card mx-3 col-md-3" style="padding: 20px 24px;">
+  <%= form_with url: test_passage_path(@test_passage), local: false,
+                data: { current_question: @test_passage.current_question_num, last_question: @test_passage.questions_count,
+                        test_timer: @test_passage.test.time, test_passage: @test_passage.id },
+                class: 'test-passage-question question-form',
+                method: :put do |form| %>
+    <b class="card-title py-3" style=""><%= @test_passage.current_question.body %></b>
+    <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
+      <p>
+        <%= b.check_box id: "answer_ids_#{b.object.id}" %>
+        <%= b.label %>
+      </p>
+    <% end %>
+    <p><%= link_to t('gist.question'), gists_path(@test_passage), method: :post %></p>
 
-  <p> <%= form.submit t('action.next') %> </p>
-<% end %>
+    <p> <%= form.submit t('action.next'), class: "submit-btn btn", style:'background-color: #B1CBFF;' %> </p>
+  <% end %>
+</div>

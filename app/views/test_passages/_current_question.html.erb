@@ -1,5 +1,21 @@
-<p><%= current_question_header(@test_passage) %> &emsp;&emsp; <span id='timer' style="font-weight: bold;"></span></p>
-<div class="my-progress">
-  <div class="my-bar"></div>
+<div class="container my-5">
+  <div class="row my-auto">
+    <div class="col my-auto">
+      <h1 style="font-size: 32px;">Тест: <%= @test_passage.test.title %></h1>
+      <p class="card-subtitle mb-2 text-body-secondary" style="font-size: 20px;">Уровень: <%= @test_passage.test.level %>
+        |
+        Категория: <%= @test_passage.test.category.title.truncate(15) %></p>
+    </div>
+    <div class="col my-auto">
+      <div id="">
+        <div class="d-flex flex-wrap" id="progress-bar">
+          <p class="my-auto py-3">Прогресс: &nbsp;</p>
+          <div class="d-flex justify-content-between align-items-center col-5" id="progress-steps">
+
+          </div>
+        </div>
+        <p>Время: <span id='timer' style="font-weight: bold;"></span></p>
+      </div>
+    </div>
+  </div>
 </div>
-<b><%= @test_passage.current_question.body %></b>

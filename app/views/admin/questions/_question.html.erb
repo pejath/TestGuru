@@ -2,5 +2,5 @@
   <td><%= question.body %></td>
   <td><%= link_to t('action.show'), admin_question_path(question) %></td>
   <td><%= button_to t('action.delete'), admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' },
-                    class: 'btn btn-primary' %></td>
+                    class: 'btn', style:'background-color: #B1CBFF;' %></td>
 </tr>

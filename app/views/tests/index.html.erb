@@ -1,22 +1,103 @@
-<h1><%= t('.header') %></h1>
+<% if @passages && !mobile_device? %>
+  <div class="container">
+    <h3 class="my-3">Недавние тесты</h3>
+    <div class="container">
+      <div id="carouselExampleControls" class="carousel slide container" data-ride="carousel">
+        <div class="carousel-inner">
+          <% @passages.in_groups_of(3, false).each_with_index do |group, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <div class="container d-flex justify-content-center">
+                <% group.each do |passage| %>
+                  <div class="card mx-3 col-md-3" style="background: #FFFCFE; padding: 20px 24px;">
+                    <h4 class="card-title"><%= passage.test.title %></h4>
+                    <p class="card-subtitle mb-2 text-body-secondary">Уровень: <%= passage.test.level %>|
+                      Категория: <%= passage.test.category.title.truncate(15) %></p>
+                    <% if passage.completed? && !passage.test.questions.count.zero? %>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <% 7.times do |i| %>
+                          <% if i < (passage.percentage / 100.0 * 7).round %>
+                            <div class="step completed"></div>
+                          <% else %>
+                            <div class="step"></div>
+                          <% end %>
+                        <% end %>
+                        <div class="percentage"><%= passage.percentage.round(2) %> %</div>
+                      </div>
+                      <p><%= link_to t('action.start'), start_test_path(passage.test), method: :post %></p>
+                    <% else %>
+                      <p><%= link_to 'Продолжить', passage %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
 
-<table class="table table-hover centered-data-table">
-  <thead class="table-dark">
-  <tr>
-    <th class="sort-by-title pointer">
-      <%= t('.title') %>
-      <%= octicon 'arrow-up', class: 'text-success' %>
-      <%= octicon 'arrow-down', class: 'text-success hide' %>
-    </th>
-    <th><%= t('.level') %></th>
-    <th><%= t('.questions') %></th>
-    <th><%= t('.actions') %></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <%= render @tests %>
-  </tbody>
-</table>
+      </div>
+      <div class="container d-flex justify-content-center" style="margin-top: 20px;">
+        <a class="" data-bs-target="#carouselExampleControls" role="button" data-bs-slide="prev" style="color: black;">
+          <span class="sr-only">Previous</span>
+        </a>
+        <div class="my-carousel-indicators">
+          <% @passages.in_groups_of(3, false).each_with_index do |group, index| %>
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="<%= index %>" class="my-button <%= 'active-button' if index == 0 %>"></button>
+          <% end %>
+        </div>
+        <a class="" data-bs-target="#carouselExampleControls" role="button" data-bs-slide="next" style="color: black;">
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+<% else %>
+<% end %>
 
 <br>
+
+<div class="col-12 mx-auto p-3">
+  <div class="container">
+    <h3>Все тесты</h3>
+    <div class="container d-flex flex-wrap">
+      <%= select_tag :level, options_for_select(@level_select.map { |k| "Уровень #{k}" }, "Уровень #{params[:level]}"), { prompt: "Выберте уровень", class: 'select-style' } %>
+      <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :title, params[:category_id]), class: 'select-style', prompt: "Выберите категорию" %>
+      <input class="form-control" id="myInput" type="text" placeholder="Поиск.." style="width: 130px;">
+    </div>
+  </div>
+  <br>
+  <div class="mx-auto d-flex flex-wrap justify-content-center col-10" id="myList" id="cards-container">
+    <%= render @tests %>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        function updateUrlParameter(param, value) {
+            var url = new URL(window.location.href);
+            url.searchParams.set(param, value);
+            window.location.href = url.href;
+
+        }
+
+        $('#level').change(function () {
+            var level = $(this).val().replace(/\D/g, "");
+
+            if (level) {
+                updateUrlParameter('level', level);
+            } else {
+                window.location.href = '/';
+            }
+        });
+
+        $('#category_id').change(function () {
+            var categoryId = $(this).val();
+
+            if (categoryId) {
+                updateUrlParameter('category_id', categoryId);
+            } else {
+                window.location.href = '/';
+            }
+        });
+    });
+
+</script>

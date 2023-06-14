@@ -1,14 +1,83 @@
-<h1 id='test-results' data-test-passage='<%= @test_passage.id %>'><%= t('.header', title: @test_passage.test.title) %></h1>
+<div class="">
+  <div class="card col-8 mx-auto text-center" style="margin-top: 12%; padding: 20px 24px;">
+    <h1 id='test-results' data-test-passage='<%= @test_passage.id %>'><%= t('.header', title: @test_passage.test.title) %></h1>
+    <p class="card-subtitle mb-2 text-body-secondary" style="font-size: 20px;">Уровень: <%= @test_passage.test.level %>
+      |
+      Категория: <%= @test_passage.test.category.title.truncate(15) %></p>
+    <p>
+      <%= t('.count') %>: <%= @test_passage.questions_count %> <br>
+      <%= t('.correct') %>: <%= @test_passage.correct_questions %>
+    </p>
 
-<p>
-  <%= t('.count') %>: <%= @test_passage.questions_count %> <br>
-  <%= t('.correct') %>: <%= @test_passage.correct_questions %>
-</p>
+    <% if @test_passage.successfully_completed? %>
+      <p><%= t('.success') %> <strong style="color: green;"><%= @test_passage.percentage.round(2) %>%</strong></p>
+    <% else %>
+      <p><%= t('.failure') %> <strong style="color: #c61c2c"><%= @test_passage.percentage.round(2) %>%</strong></p>
+    <% end %>
+    <% if @prev_passages %>
+      <div>
+        <p>Предыдущие результаты</p>
+        <% @prev_passages.each_with_index do |passage, i| %>
+          <div>
+            <p class="my-auto"><span id="prev-passage-<%= i %>"><%= passage.correct_questions %></span> из
+              <span id="prev-count-<%= i %>"><%= passage.questions_count %> </span> вопросов
+            </p>
+            <div class="d-flex justify-content-center">
+              <div class="d-flex justify-content-between align-items-center col-3" id="prev-progress-<%= i %>">
+              </div>
+              <p class="my-auto">&nbsp;&nbsp;<%= passage.percentage.round(2) %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= link_to t('action.all_tests'), tests_path %>
+  </div>
+</div>
 
-<% if @test_passage.successfully_completed? %>
-  <p><%= t('.success') %> <strong color="green"><%= @test_passage.percentage.round(2) %>%</strong></p>
-<% else %>
-  <p><%= t('.failure') %> <strong color="red"><%= @test_passage.percentage.round(2) %>%</strong></p>
-<% end %>
+<script>
+    window.addEventListener('load', () => {
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        for (let j = 0; j < 2; j++) {
+            const currentQuestionNum = parseInt(document.getElementById(`prev-passage-${j}`).innerHTML)
+            const questionsCount = parseInt(document.getElementById(`prev-count-${j}`).innerHTML);
+            const maxProgressSteps = isMobileDevice ? 5 : 10;
 
-<%= link_to t('action.all_tests'), tests_path %>
+            // Контейнеры для прогресс-бара и шагов
+            let progressBar = document.getElementById(`prev-progress-${j}`);
+            let progressSteps = document.getElementById(`prev-progress-${j}`);
+
+            // Генерация шагов прогресса
+            function generateProgressSteps(currentQuestionNum, questionsCount) {
+                progressSteps.innerHTML = ''; // Очищаем контейнер перед генерацией
+
+                let stepSize = (maxProgressSteps / questionsCount);
+                let completedSteps = ((currentQuestionNum) * stepSize);
+
+                for (let i = 0; i < maxProgressSteps; i++) {
+                    const step = document.createElement('div');
+                    step.classList.add('step');
+                    console.log(completedSteps)
+                    if (i < completedSteps) {
+                        step.classList.add('completed');
+                    } else if (i === Math.ceil(completedSteps) && Math.ceil(currentQuestionNum) % stepSize !== 0) {
+                        const progress = ((currentQuestionNum % stepSize) / stepSize) * 100;
+                        step.classList.add('incomplete');
+                        step.style.setProperty('--progress', `${progress}%`);
+                    }
+
+                    progressSteps.appendChild(step);
+                }
+            }
+
+            // Обновление прогресс-бара
+            function updateProgressBar(currentQuestionNum, questionsCount) {
+                generateProgressSteps(currentQuestionNum, questionsCount);
+            }
+
+            // Вызов функции для инициализации прогресс-бара
+            updateProgressBar(currentQuestionNum, questionsCount);
+        }
+    });
+
+</script>
